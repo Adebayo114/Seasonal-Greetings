@@ -1,23 +1,27 @@
-// Retrieve data from localStorage
-const name = localStorage.getItem("name");
-const surname = localStorage.getItem("surname");
-const listChoice = localStorage.getItem("listChoice");
-const isMrChecked = localStorage.getItem("isMrChecked") === "true";
-const isMrsChecked = localStorage.getItem("isMrsChecked") === "true";
+window.onload = function () {
+    const urlLink = new URLSearchParams(window.location.search);
+    const name = urlLink.get('name');
+    const surname = urlLink.get('surname');
+    const option = urlLink.get('option');
+    const mrCheckbox = urlLink.get('mrCheckbox') === 'true'; // Convert to boolean
+    const mrsCheckbox = urlLink.get('mrsCheckbox') === 'true'; // Convert to boolean
+    const sendTo = urlLink.get('who');
 
-// Clear localStorage after retrieving data (optional)
-localStorage.clear();
+    const greetingContainer = document.getElementById('greetingContainer');
+    const identificationContainer = document.getElementById('identification');
+    const sendToContainer = document.getElementById('sendTo');
 
-// Create a greeting message based on the retrieved data
-let greeting = `Hello, ${name} ${surname}!<br>`;
+    if (name && surname && option && sendTo) {
+        let greetingText = option;
+        let identificationText = `${mrCheckbox ? 'Mr' : ''} ${mrsCheckbox ? 'Mrs' : ''} ${name} ${surname}`;
+        let sendToText = sendTo;
 
-if (isMrChecked) {
-    greeting += `Happy ${listChoice}, Mr. ${surname}!<br>`;
-} else if (isMrsChecked) {
-    greeting += `Happy ${listChoice}, Mrs. ${surname}!<br>`;
-} else {
-    greeting += `Happy ${listChoice}, ${name} ${surname}!<br>`;
-}
+        // Add more conditions for other options...
 
-// Insert the greeting message into the "greetingContainer" div
-document.getElementById("greetingContainer").innerHTML = greeting;
+        greetingContainer.innerHTML = greetingText;
+        identificationContainer.innerHTML = identificationText;
+        sendToContainer.innerHTML = sendToText;
+    } else {
+        greetingContainer.innerHTML = 'Please fill up the recommended procedures';
+    }
+};

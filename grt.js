@@ -7,26 +7,94 @@
 //     console.log(userEmail)
 // })
 
+function submitForm() {
+    // Get form elements
+    let myname = document.getElementById('Name').value;
+    let mysurname = document.getElementById('surname').value;
+    let myemail = document.getElementById('email').value;
+    let myoption = document.getElementById('List').value;
+    let mrCheckbox = document.getElementById('mrCheckbox').checked;
+    let mrsCheckbox = document.getElementById('mrsCheckbox').checked;
+    let sendTo = document.getElementById('who').value;
 
-    function submitForm() {
-        // Get form elements
-        const name = document.getElementById("Name").value;
-        const email = document.getElementById("email").value;
-        const surname = document.getElementById("surname").value;
-        const listChoice = document.getElementById("List").value;
-        const isMrChecked = document.getElementById("mr").checked;
-        const isMrsChecked = document.getElementById("mrs").checked;
-
-        // Store data in localStorage (you can also use cookies, sessionStorage, or other methods)
-        localStorage.setItem("name", name);
-        localStorage.setItem("email", email);
-        localStorage.setItem("surname", surname);
-        localStorage.setItem("listChoice", listChoice);
-        localStorage.setItem("isMrChecked", isMrChecked);
-        localStorage.setItem("isMrsChecked", isMrsChecked);
-
-        return true; // Allow the form to be submitted
+    // Validate form inputs
+    if (myname === "" || mysurname === "" || myemail === "" || myoption === ""|| sendTo === "") {
+        alert('Fields cannot be empty');
+        return false; // Prevent form submission
     }
+
+    // Redirect to landing.html with form data in the URL
+    const urlParams = new URLSearchParams({
+        name: myname,
+        surname: mysurname,
+        email: myemail,
+        option: myoption,
+        mrCheckbox: mrCheckbox,
+        mrsCheckbox: mrsCheckbox,
+        who: sendTo // Use the same name 'Who' as in the landing page
+    });
+    
+
+    window.location.href = `landing.html?${urlParams.toString()}`;
+
+    return false; // Prevent form submission
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
