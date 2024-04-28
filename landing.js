@@ -25,3 +25,26 @@ window.onload = function () {
         greetingContainer.innerHTML = 'Please fill up the recommended procedures';
     }
 };
+
+
+
+    // Function to generate dynamic WhatsApp link
+    function generateWhatsAppLink() {
+        // Get user input or data (example values)
+        let name = "adebayo";
+        let surname = "matthew";
+        let email = "matthewadebayo392@gmail.com";
+        let option = "Happy Birthday";
+        let mrCheckbox = "false";
+        let mrsCheckbox = "false";
+        let who = "Adebayo Zainab";
+
+        // Construct WhatsApp link with dynamic query parameters
+        let whatsappLink = `https://wa.me/?text=Check%20out%20this%20greeting%20website:%20${window.location.origin}/landing.html?name=${name}&surname=${surname}&email=${email}&option=${option}&mrCheckbox=${mrCheckbox}&mrsCheckbox=${mrsCheckbox}&who=${who}`;
+
+        // Set href attribute of WhatsApp link
+        document.getElementById("whatsapp").querySelector("a").setAttribute("href", whatsappLink);
+    }
+
+    // Call the function to generate WhatsApp link
+    generateWhatsAppLink();
