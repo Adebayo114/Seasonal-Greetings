@@ -28,23 +28,24 @@ window.onload = function () {
 
 
 
-    // Function to generate dynamic WhatsApp link
-    function generateWhatsAppLink() {
-        // Get user input or data (example values)
-        let name = "adebayo";
-        let surname = "matthew";
-        let email = "matthewadebayo392@gmail.com";
-        let option = "Happy Birthday";
-        let mrCheckbox = "false";
-        let mrsCheckbox = "false";
-        let who = "Adebayo Zainab";
+   // Function to generate dynamic WhatsApp link
+function generateWhatsAppLink() {
+    // Get form data from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+    const surname = urlParams.get('surname');
+    const email = urlParams.get('email');
+    const option = urlParams.get('option');
+    const mrCheckbox = urlParams.get('mrCheckbox') === 'true';
+    const mrsCheckbox = urlParams.get('mrsCheckbox') === 'true';
+    const who = urlParams.get('who');
 
-        // Construct WhatsApp link with dynamic query parameters
-        let whatsappLink = `https://wa.me/?text=Check%20out%20this%20greeting%20website:%20${window.location.origin}/landing.html?name=${name}&surname=${surname}&email=${email}&option=${option}&mrCheckbox=${mrCheckbox}&mrsCheckbox=${mrsCheckbox}&who=${who}`;
+    // Construct WhatsApp link with dynamic query parameters
+    let whatsappLink = `https://wa.me/?text=Check%20out%20this%20greeting%20website:%20${window.location.origin}/landing.html?name=${name}&surname=${surname}&email=${email}&option=${option}&mrCheckbox=${mrCheckbox}&mrsCheckbox=${mrsCheckbox}&who=${who}`;
 
-        // Set href attribute of WhatsApp link
-        document.getElementById("whatsapp").querySelector("a").setAttribute("href", whatsappLink);
-    }
+    // Set href attribute of WhatsApp link
+    document.getElementById("whatsapp").querySelector("a").setAttribute("href", whatsappLink);
+}
 
-    // Call the function to generate WhatsApp link
-    generateWhatsAppLink();
+// Call the function to generate WhatsApp link
+generateWhatsAppLink();
