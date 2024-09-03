@@ -16,36 +16,22 @@ window.onload = function () {
         let identificationText = `${mrCheckbox ? 'Mr' : ''} ${mrsCheckbox ? 'Mrs' : ''} ${name} ${surname}`;
         let sendToText = sendTo;
 
-        // Add more conditions for other options...
-
         greetingContainer.innerHTML = greetingText;
         identificationContainer.innerHTML = identificationText;
         sendToContainer.innerHTML = sendToText;
+
+        // Generate WhatsApp link after content is set
+        generateWhatsAppLink(name, surname, option, mrCheckbox, mrsCheckbox, sendTo);
     } else {
         greetingContainer.innerHTML = 'Please fill up the recommended procedures';
     }
 };
 
-
-
-   // Function to generate dynamic WhatsApp link
-function generateWhatsAppLink() {
-    // Get form data from URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const name = urlParams.get('name');
-    const surname = urlParams.get('surname');
-    const email = urlParams.get('email');
-    const option = urlParams.get('option');
-    const mrCheckbox = urlParams.get('mrCheckbox') === 'true';
-    const mrsCheckbox = urlParams.get('mrsCheckbox') === 'true';
-    const who = urlParams.get('who');
-
+// Function to generate dynamic WhatsApp link
+function generateWhatsAppLink(name, surname, option, mrCheckbox, mrsCheckbox, sendTo) {
     // Construct WhatsApp link with dynamic query parameters
-    let whatsappLink = `https://wa.me/?text=Check%20out%20this%20greeting%20website:%20${window.location.origin}/landing.html?name=${name}&surname=${surname}&email=${email}&option=${option}&mrCheckbox=${mrCheckbox}&mrsCheckbox=${mrsCheckbox}&who=${who}`;
+    let whatsappLink = `https://wa.me/?text=Check%20out%20this%20greeting%20I%20sent%20you:%20${encodeURIComponent(window.location.href)}`;
 
     // Set href attribute of WhatsApp link
     document.getElementById("whatsapp").querySelector("a").setAttribute("href", whatsappLink);
 }
-
-// Call the function to generate WhatsApp link
-generateWhatsAppLink();
