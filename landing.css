@@ -161,6 +161,20 @@ a{
     color:chocolate;
 }
 
+.Happy-Graduation-Day {
+    background-image: url('./images/pexels-rdne-7713351.jpg');
+    background-size: cover;
+    background-position: center;
+    color:chocolate;
+}
+
+.Keep-Up-the-Good-Work {
+    background-image: url('./images/pexels-savvas-stavrinos-270619-814544.jpg');
+    background-size: cover;
+    background-position: center;
+    color:chocolate;
+}
+
 /* Background for Eid-al-Maulud */
 .eid-al-maulud-bg {
     background-image: url('./images/pexels-halid-elosman-3328515-28161238.jpg');

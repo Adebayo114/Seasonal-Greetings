@@ -75,6 +75,12 @@ function setGreetingBackground(option, container) {
         case "Happy Ed-al-Fitr":
             container.classList.add('happy-ed-al-fitr-bg');
             break;
+        case "Happy Graduation Day":
+            container.classList.add("Happy-Graduation-Day");
+            break;
+        case "Keep Up the Good Work":
+                container.classList.add("Keep-Up-the-Good-Work");
+                break;
         case "Eid-al-Maulud":
             container.classList.add('eid-al-maulud-bg');
             break;
