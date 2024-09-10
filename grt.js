@@ -1,4 +1,6 @@
 function submitForm() {
+    console.log("Form submission started");
+
     // Get form elements
     let myname = document.getElementById('Name').value;
     let mysurname = document.getElementById('surname').value;
@@ -14,13 +16,15 @@ function submitForm() {
         return false; // Prevent form submission
     }
 
+    console.log("Form validated successfully");
+
     // Ensure only one checkbox selection is valid
     if (noneCheckbox) {
         mrCheckbox = false;
         mrsCheckbox = false;
     }
 
-    // Redirect to landing.html with form data in the URL
+    // Redirect to objects.html with form data in the URL
     const urlParams = new URLSearchParams({
         name: myname,
         surname: mysurname,
@@ -31,6 +35,16 @@ function submitForm() {
         who: sendTo
     });
 
+    console.log("Redirecting to objects.html with URL parameters:", urlParams.toString());
+
     window.location.href = `objects.html?${urlParams.toString()}`;
     return false; // Prevent form submission
+}
+
+// Function to allow only one checkbox to be selected
+function uncheckOthers(checkbox) {
+    document.getElementById('mrCheckbox').checked = false;
+    document.getElementById('mrsCheckbox').checked = false;
+    document.getElementById('none').checked = false;
+    checkbox.checked = true;
 }
