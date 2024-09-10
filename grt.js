@@ -1,4 +1,3 @@
-// Function to handle form submission
 function submitForm() {
     // Get form elements
     let myname = document.getElementById('Name').value;
@@ -6,7 +5,7 @@ function submitForm() {
     let myoption = document.getElementById('List').value;
     let mrCheckbox = document.getElementById('mrCheckbox').checked;
     let mrsCheckbox = document.getElementById('mrsCheckbox').checked;
-    let none = document.getElementById('none').checked;
+    let noneCheckbox = document.getElementById('none').checked;
     let sendTo = document.getElementById('who').value;
 
     // Validate form inputs
@@ -15,16 +14,23 @@ function submitForm() {
         return false; // Prevent form submission
     }
 
-    // Save form data to localStorage
-    localStorage.setItem('name', myname);
-    localStorage.setItem('surname', mysurname);
-    localStorage.setItem('option', myoption);
-    localStorage.setItem('mrCheckbox', mrCheckbox);
-    localStorage.setItem('mrsCheckbox', mrsCheckbox);
-    localStorage.setItem('none', none);
-    localStorage.setItem('who', sendTo);
+    // Ensure only one checkbox selection is valid
+    if (noneCheckbox) {
+        mrCheckbox = false;
+        mrsCheckbox = false;
+    }
 
-    // Redirect to landing page
-    window.location.href = `objects.html`;
-    return false; // Prevent default form submission behavior
+    // Redirect to landing.html with form data in the URL
+    const urlParams = new URLSearchParams({
+        name: myname,
+        surname: mysurname,
+        option: myoption,
+        mrCheckbox: mrCheckbox,
+        mrsCheckbox: mrsCheckbox,
+        noneCheckbox: noneCheckbox,
+        who: sendTo
+    });
+
+    window.location.href = `objects.html?${urlParams.toString()}`;
+    return false; // Prevent form submission
 }
