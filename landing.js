@@ -18,7 +18,7 @@ window.onload = function () {
         let greetingText = option;
 
         // Adjust the identification text based on checkbox states
-        let identificationText = `${noneCheckbox ? '' : (mrCheckbox ? 'Mr' : '')} ${noneCheckbox ? '' : (mrsCheckbox ? 'Mrs' : '')} ${name} ${surname}`;
+        let identificationText = `${noneCheckbox ? '' : (mrCheckbox ? 'Mr' : '')} ${noneCheckbox ? '' : (mrsCheckbox ? 'Mrs' : '')} ${name} ${surname}`.trim();
         let sendToText = sendTo;
 
         greetingContainer.innerHTML = greetingText;
@@ -105,10 +105,13 @@ function setGreetingBackground(option, container) {
 function generateWhatsAppLink(name, surname, option, mrCheckbox, mrsCheckbox, sendTo) {
     const baseUrl = "https://api.whatsapp.com/send";
     
+    // Construct the result page URL with query parameters
+    const resultPageUrl = `${window.location.origin}/objects.html?name=${encodeURIComponent(name)}&surname=${encodeURIComponent(surname)}&option=${encodeURIComponent(option)}&mrCheckbox=${mrCheckbox}&mrsCheckbox=${mrsCheckbox}&noneCheckbox=${!mrCheckbox && !mrsCheckbox}&who=${encodeURIComponent(sendTo)}`;
+    
     // Construct the greeting message
     let greeting = `${option}!`;  // Use the selected option (e.g., "Happy Birthday!")
     let identification = `${mrCheckbox ? "Mr" : ""} ${mrsCheckbox ? "Mrs" : ""} ${name} ${surname}`.trim();
-    let message = `Hello ${sendTo}, ${greeting} from ${identification}.`;
+    let message = `Hello ${sendTo}, ${greeting} from ${identification}. Check your personalized greeting here: ${resultPageUrl}`;
 
     // Encode the message for use in a URL
     const encodedMessage = encodeURIComponent(message);
