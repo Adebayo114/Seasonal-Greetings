@@ -95,11 +95,11 @@ function setGreetingBackground(option, container) {
                 break;
     }
 }
-// Function to generate dynamic WhatsApp link
-function generateWhatsAppLink(name, surname, option, mrCheckbox, mrsCheckbox, sendTo) {
-    // Construct WhatsApp link with dynamic query parameters
-    let whatsappLink = `https://wa.me/?text=Check%20out%20this%20greeting%20I%20sent%20you:%20${encodeURIComponent(window.location.href)}`;
 
-    // Set href attribute of WhatsApp link
-    document.getElementById("whatsapp").querySelector("a").setAttribute("href", whatsappLink);
+// Function to generate WhatsApp sharing link
+function generateWhatsAppLink(name, surname, option, mrCheckbox, mrsCheckbox, sendTo) {
+    let fullName = `${noneCheckbox ? '' : (mrCheckbox ? 'Mr' : '')} ${noneCheckbox ? '' : (mrsCheckbox ? 'Mrs' : '')} ${name} ${surname}`;
+    const message = `Hi! ${sendTo},\n${fullName} sends you warm greetings: ${option}!`;
+    const whatsappLink = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    document.querySelector("#whatsapp a").setAttribute("href", whatsappLink);
 }
