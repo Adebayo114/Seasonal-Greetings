@@ -9,56 +9,66 @@
 </head>
 <body>
     <div class="start">
-        <form id="form" onsubmit="return submitForm()">
-            <label for="Name">Name:</label>
+        <form id="form" action="objects.html" onsubmit="return submitForm()">
+            <label for="name">Name:</label>
             <input id="Name" type="text" placeholder="Name">
             <br><br>
             <label for="surname">Surname:</label>
             <input id="surname" type="text" placeholder="Surname">
             <br><br>
             <select class="select-list" id="List">
-                <option value="">Please Choose Your List Choice</option>
-                <option value="Happy Birthday">Happy Birthday🎁🎈🎂</option>
-                <option value="Happy New Year">Happy New Year🎊🎈🎆🎇🧨✨</option>
-                <option value="Happy Valentine's Day">Happy Valentine's Day♥💓👩‍❤️‍👩</option>
-                <option value="Happy Easter">Happy Easter🥚🎁🐰</option>
-                <option value="Happy Halloween">Happy Halloween🎃🎃🎊</option>
-                <option value="Happy Mother's Day">Happy Mother's Day👩💓</option>
-                <option value="Happy Father's Day">Happy Father's Day🧔💓</option>
-                <option value="Happy Children's Day">Happy Children's Day👨‍👨‍👧‍👧💓🎊</option>
-                <option value="Merry Christmas">Merry Christmas✨🎄🎊🎇</option>
-                <option value="Happy Boxing Day">Happy Boxing Day🥊😉</option>
-                <option value="Happy Ed-al-Kabir">Happy Ed-al-Kabir👳‍♂️💓</option>
-                <option value="Happy Ed-al-Fitr">Happy Ed-al-Fitr🧕💓</option>
-                <option value="Happy Graduation Day">Happy Graduation Day🎓🎓</option>
-                <option value="Keep Up the Good Work" >Keep Up the Good Work😉</option>
-                <option value="Eid-al-Maulud">Eid-al-Maulud🌙🎊</option>
-                <option value="Happy Independence Day">Happy Independence Day👨‍👨‍👧‍👧💓</option>
-                <option value="Happy Democracy Day">Happy Democracy Day🎆🎇</option>
-                <option value="Happy Worker's Day">Happy Worker's Day👨‍🔧🎊😉</option>
+                
+        <option value="">Please Choose Your List Choice</option>
+                    <option value="Happy Birthday">Happy Birthday🎁🎈🎂</option>
+                    <option class="list-child" value="Happy New Year">Happy New Year🎊🎈🎆🎇🧨✨</option>
+                    <option class="list-child" value="Happy Valentine's Day">Happy Valentine's Day♥💓👩‍❤️‍👩</option>
+                    <option class="list-child" value="Happy Easter">Happy Easter🥚🎁🐰</option>
+                    <option class="list-child" value="Happy Easter">Happy Halloween🎃🎃🎊</option>
+                    <option class="list-child" value="Happy Mother's Day">Happy Mother's Day👩💓</option>
+                    <option class="list-child" value="Happy Father's Day">Happy Father's Day🧔💓</option>
+                    <option class="list-child" value="Happy Children's Day">Happy Children's Day👨‍👨‍👧‍👧💓🎊</option>
+                    <option class="list-child" value="Merry Christmas">Merry Christmas✨🎄🎊🎇</option>
+                    <option class="list-child" value="Happy Boxing Day">Happy Boxing Day🥊😉</option>
+                    <option class="list-child" value="Happy Ed-al-Kabir">Happy Ed-al-Kabir👳‍♂️💓</option>
+                    <option class="list-child" value="Happy Ed-al-Fitr">Happy Ed-al-Fitr🧕💓</option>
+                    <option class="list-child" value="Happy Graduation Day">Happy Graduation Day🎓🎓</option>
+                    <option class="list-child" value="Keep Up the Good Work" >Keep Up the Good Work😉</option>
+                    <option class="list-child" value="Eid-al-Maulud">Eid-al-Maulud🌙🎊</option>
+                    <option class="list-child" value="Happy Independence Day">Happy Independence Day👨‍👨‍👧‍👧💓</option>
+                    <option class="list-child" value="Happy Democracy Day">Happy Democracy Day🎆🎇</option>
+                    <option class="list-child" value="Happy Worker's Day">Happy Worker's Day👨‍🔧🎊😉</option>
             </select>
             <br><br>
             <label for="mrCheckbox">Mr</label>
-            <input id="mrCheckbox" type="checkbox" onclick="uncheckOthers(this)">
+            <input id="mrCheckbox" type="checkbox">
             <label for="mrsCheckbox">Mrs</label>
-            <input id="mrsCheckbox" type="checkbox" onclick="uncheckOthers(this)">
+            <input id="mrsCheckbox" type="checkbox">
             <label for="none">None</label>
-            <input type="checkbox" id="none" onclick="uncheckOthers(this)">
+            <input type="checkbox" id="none">
             <br><br>
             <label for="who">To?:</label>
             <input id="who" type="text" placeholder="Required">
             <br><br>
             <button id="submitBtn" type="submit">Submit</button>
         </form>
+        
+        
+    
+
+
+        
         <div class="video-background">
             <video autoplay muted loop>
-                <source src="./media/pexels-nicole-michalou-5754819.mp4" type="video/mp4">
+            <source src="./media/pexels-nicole-michalou-5754819 (2160p) (1).mp4" type="video/mp4">
+            <!-- Your browser does not support the video tag. -->
             </video>
         </div>
+        
         <div class="content">
             <h1 id="greetingText">Welcome</h1>
             <p>God Bless you</p>
         </div>
+
     </div>
     <script src="grt.js"></script>
 </body>

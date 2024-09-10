@@ -1,13 +1,11 @@
 function submitForm() {
-    console.log("Form submission started");
-
     // Get form elements
     let myname = document.getElementById('Name').value;
     let mysurname = document.getElementById('surname').value;
     let myoption = document.getElementById('List').value;
     let mrCheckbox = document.getElementById('mrCheckbox').checked;
     let mrsCheckbox = document.getElementById('mrsCheckbox').checked;
-    let noneCheckbox = document.getElementById('none').checked;
+    let noneCheckbox = document.getElementById('none').checked; // Get "None" checkbox state
     let sendTo = document.getElementById('who').value;
 
     // Validate form inputs
@@ -16,35 +14,23 @@ function submitForm() {
         return false; // Prevent form submission
     }
 
-    console.log("Form validated successfully");
-
-    // Ensure only one checkbox selection is valid
+    // Ensure that if "None" is checked, "Mr" and "Mrs" are unchecked
     if (noneCheckbox) {
         mrCheckbox = false;
         mrsCheckbox = false;
     }
 
-    // Redirect to objects.html with form data in the URL
+    // Redirect to landing.html with form data in the URL
     const urlParams = new URLSearchParams({
         name: myname,
         surname: mysurname,
         option: myoption,
         mrCheckbox: mrCheckbox,
         mrsCheckbox: mrsCheckbox,
-        noneCheckbox: noneCheckbox,
+        noneCheckbox: noneCheckbox, // Add "None" checkbox state
         who: sendTo
     });
 
-    console.log("Redirecting to objects.html with URL parameters:", urlParams.toString());
-
     window.location.href = `objects.html?${urlParams.toString()}`;
     return false; // Prevent form submission
-}
-
-// Function to allow only one checkbox to be selected
-function uncheckOthers(checkbox) {
-    document.getElementById('mrCheckbox').checked = false;
-    document.getElementById('mrsCheckbox').checked = false;
-    document.getElementById('none').checked = false;
-    checkbox.checked = true;
 }
