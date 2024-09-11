@@ -1,136 +1,68 @@
 window.onload = function () {
+    // Get the query parameters from the URL
     const urlLink = new URLSearchParams(window.location.search);
     const name = urlLink.get('name');
     const surname = urlLink.get('surname');
     const option = urlLink.get('option');
-    const mrCheckbox = urlLink.get('mrCheckbox') === 'true'; // Convert to boolean
-    const mrsCheckbox = urlLink.get('mrsCheckbox') === 'true'; // Convert to boolean
-    const noneCheckbox = urlLink.get('noneCheckbox') === 'true'; // Convert to boolean
+    const mrCheckbox = urlLink.get('mrCheckbox') === 'true';
+    const mrsCheckbox = urlLink.get('mrsCheckbox') === 'true';
+    const noneCheckbox = urlLink.get('noneCheckbox') === 'true';
     const sendTo = urlLink.get('who');
 
+    // Cache DOM elements to avoid multiple lookups
     const greetingContainer = document.getElementById('greetingContainer');
     const identificationContainer = document.getElementById('identification');
     const sendToContainer = document.getElementById('sendTo');
-    
     const headContainer = document.querySelector('.head-container');
 
+    // Check if all required data is available
     if (name && surname && option && sendTo) {
-        let greetingText = option;
+        // Prepare the text to be displayed
+        const greetingText = option;
+        const identificationText = `${noneCheckbox ? '' : (mrCheckbox ? 'Mr' : '')} ${noneCheckbox ? '' : (mrsCheckbox ? 'Mrs' : '')} ${name} ${surname}`.trim();
+        const sendToText = sendTo;
 
-        // Adjust the identification text based on checkbox states
-        let identificationText = `${noneCheckbox ? '' : (mrCheckbox ? 'Mr' : '')} ${noneCheckbox ? '' : (mrsCheckbox ? 'Mrs' : '')} ${name} ${surname}`.trim();
-        let sendToText = sendTo;
-
+        // Update the content in the HTML
         greetingContainer.innerHTML = greetingText;
         identificationContainer.innerHTML = identificationText;
         sendToContainer.innerHTML = sendToText;
 
-        // Apply the appropriate background image class
+        // Set the appropriate background based on the greeting option
         setGreetingBackground(option, headContainer);
 
-        // Generate WhatsApp link after content is set
+        // Generate WhatsApp link
         generateWhatsAppLink(name, surname, option, mrCheckbox, mrsCheckbox, sendTo);
     } else {
+        // Show error message if required data is missing
         greetingContainer.innerHTML = 'Please fill up the recommended procedures';
     }
 };
 
-// Function to set the background image class
+// Function to set the background image class based on the greeting option
 function setGreetingBackground(option, container) {
+    const backgrounds = {
+        "Happy Birthday": "happy-birthday-bg",
+        "Happy New Year": "happy-new-year-bg",
+        "Happy Valentine's Day": "happy-valentines-day-bg",
+        "Happy Easter": "happy-easter-bg",
+        "Happy Halloween": "happy-halloween-bg",
+        "Happy Mother's Day": "happy-mothers-day-bg",
+        "Happy Father's Day": "happy-fathers-day-bg",
+        "Happy Children's Day": "happy-childrens-day-bg",
+        "Merry Christmas": "merry-christmas-bg",
+        "Happy Boxing Day": "happy-boxing-day-bg",
+        "Happy Ed-al-Kabir": "happy-ed-al-kabir-bg",
+        "Happy Ed-al-Fitr": "happy-ed-al-fitr-bg",
+        "Happy Graduation Day": "happy-graduation-day-bg",
+        "Keep Up the Good Work": "keep-up-the-good-work-bg",
+        "Eid-al-Maulud": "eid-al-maulud-bg",
+        "Happy Independence Day": "happy-independence-day-bg",
+        "Happy Democracy Day": "happy-democracy-day-bg",
+        "Happy Worker's Day": "happy-workers-day-bg"
+    };
+
     // Remove all existing background classes
     container.className = 'head-container';
-
-    // Determine the class to add based on the option
-    switch (option) {
-        case "Happy Birthday":
-            container.classList.add('happy-birthday-bg');
-            break;
-        case "Happy New Year":
-            container.classList.add('happy-new-year-bg');
-            break;
-        case "Happy Valentine's Day":
-            container.classList.add('happy-valentines-day-bg');
-            break;
-        case "Happy Easter":
-            container.classList.add('happy-easter-bg');
-            break;
-        case "Happy Halloween":
-            container.classList.add('happy-halloween-bg');
-            break;
-        case "Happy Mother's Day":
-            container.classList.add('happy-mothers-day-bg');
-            break;
-        case "Happy Father's Day":
-            container.classList.add('happy-fathers-day-bg');
-            break;
-        case "Happy Children's Day":
-            container.classList.add('happy-childrens-day-bg');
-            break;
-        case "Merry Christmas":
-            container.classList.add('merry-christmas-bg');
-            break;
-        case "Happy Boxing Day":
-            container.classList.add('happy-boxing-day-bg');
-            break;
-        case "Happy Ed-al-Kabir":
-            container.classList.add('happy-ed-al-kabir-bg');
-            break;
-        case "Happy Ed-al-Fitr":
-            container.classList.add('happy-ed-al-fitr-bg');
-            break;
-        case "Happy Graduation Day":
-            container.classList.add('happy-graduation-day-bg');
-            break;
-        case "Keep Up the Good Work":
-            container.classList.add('keep-up-the-good-work-bg');
-            break;
-        case "Eid-al-Maulud":
-            container.classList.add('eid-al-maulud-bg');
-            break;
-        case "Happy Independence Day":
-            container.classList.add('happy-independence-day-bg');
-            break;
-        case "Happy Democracy Day":
-            container.classList.add('happy-democracy-day-bg');
-            break;
-        case "Happy Worker's Day":
-            container.classList.add('happy-workers-day-bg');
-            break;
-        default:
-            container.classList.add('default-bg'); // Fallback if no match is found
-            break;
-    }
-}
-
-function generateWhatsAppLink(name, surname, option, mrCheckbox, mrsCheckbox, sendTo) {
-    const baseUrl = "https://api.whatsapp.com/send";
-
-    // Construct the result page URL with query parameters
-    const resultPageUrl = `${window.location.origin}/Seasonal-Greetings/objects.html?name=${encodeURIComponent(name)}&surname=${encodeURIComponent(surname)}&option=${encodeURIComponent(option)}&mrCheckbox=${mrCheckbox}&mrsCheckbox=${mrsCheckbox}&noneCheckbox=${!mrCheckbox && !mrsCheckbox}&who=${encodeURIComponent(sendTo)}`;
-
-    // Determine the identification based on the selected checkboxes
-    let identification = '';
-    if (mrCheckbox) {
-        identification = "Mr";
-    } else if (mrsCheckbox) {
-        identification = "Mrs";
-    }
-
-    // Construct the greeting message
-    let greeting = `${option}!`;  // Use the selected option (e.g., "Happy Birthday!")
-    
-    // Include the identification and greeting in the message
-    let message = `Hello ${sendTo}, ${greeting} from ${identification} ${name} ${surname}. Check out this greeting I sent you: ${resultPageUrl}`;
-
-    // Encode the message for use in a URL
-    const encodedMessage = encodeURIComponent(message);
-
-    // Construct the full WhatsApp link
-    const whatsappLink = `${baseUrl}?text=${encodedMessage}`;
-
-    // Set the WhatsApp link in the appropriate element
-    const whatsappLinkElement = document.querySelector("#whatsapp a");
-    if (whatsappLinkElement) {
-        whatsappLinkElement.href = whatsappLink;
-    }
+    // Add the background class corresponding to the selected option
+    container.classList.add(backgrounds[option] || 'default-bg');
 }
