@@ -31,7 +31,7 @@ window.onload = function () {
         setGreetingBackground(option, headContainer);
 
         // Generate WhatsApp link
-        generateWhatsAppLink(name, surname, option, mrCheckbox, mrsCheckbox, sendTo);
+        generateWhatsAppLink(urlLink, name, surname, option, mrCheckbox, mrsCheckbox, sendTo);
     } else {
         // Show error message if required data is missing
         greetingContainer.innerHTML = 'Please fill up the recommended procedures';
@@ -68,7 +68,7 @@ function setGreetingBackground(option, container) {
 }
 
 // Function to generate the WhatsApp link
-function generateWhatsAppLink(name, surname, option, mrCheckbox, mrsCheckbox, sendTo) {
+function generateWhatsAppLink(urlLink, name, surname, option, mrCheckbox, mrsCheckbox, sendTo) {
     const noneCheckbox = urlLink.get('noneCheckbox') === 'true'; // Ensure 'noneCheckbox' is also handled
     const identificationText = `${noneCheckbox ? '' : (mrCheckbox ? 'Mr' : '')} ${noneCheckbox ? '' : (mrsCheckbox ? 'Mrs' : '')} ${name} ${surname}`.trim();
     const message = `Check out this greeting: ${option} from ${identificationText} to ${sendTo}`;
@@ -82,4 +82,9 @@ function generateWhatsAppLink(name, surname, option, mrCheckbox, mrsCheckbox, se
     // Set the WhatsApp link in the anchor tag
     const whatsappAnchor = document.getElementById('whatsappLink');
     whatsappAnchor.href = whatsappLink;
+    
+    // Add a click listener for debugging (optional)
+    whatsappAnchor.addEventListener('click', function() {
+        console.log('WhatsApp link clicked');
+    });
 }
