@@ -69,6 +69,7 @@ function setGreetingBackground(option, container) {
 
 // Function to generate the WhatsApp link
 function generateWhatsAppLink(name, surname, option, mrCheckbox, mrsCheckbox, sendTo) {
+    const noneCheckbox = urlLink.get('noneCheckbox') === 'true'; // Ensure 'noneCheckbox' is also handled
     const identificationText = `${noneCheckbox ? '' : (mrCheckbox ? 'Mr' : '')} ${noneCheckbox ? '' : (mrsCheckbox ? 'Mrs' : '')} ${name} ${surname}`.trim();
     const message = `Check out this greeting: ${option} from ${identificationText} to ${sendTo}`;
     
