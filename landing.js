@@ -66,3 +66,19 @@ function setGreetingBackground(option, container) {
     // Add the background class corresponding to the selected option
     container.classList.add(backgrounds[option] || 'default-bg');
 }
+
+// Function to generate the WhatsApp link
+function generateWhatsAppLink(name, surname, option, mrCheckbox, mrsCheckbox, sendTo) {
+    const identificationText = `${noneCheckbox ? '' : (mrCheckbox ? 'Mr' : '')} ${noneCheckbox ? '' : (mrsCheckbox ? 'Mrs' : '')} ${name} ${surname}`.trim();
+    const message = `Check out this greeting: ${option} from ${identificationText} to ${sendTo}`;
+    
+    // Encode the message and URL
+    const whatsappMessage = encodeURIComponent(message);
+    
+    // Generate the WhatsApp link
+    const whatsappLink = `https://wa.me/?text=${whatsappMessage}`;
+    
+    // Set the WhatsApp link in the anchor tag
+    const whatsappAnchor = document.getElementById('whatsappLink');
+    whatsappAnchor.href = whatsappLink;
+}
